@@ -5,6 +5,10 @@
   @apply font-Rubik;
 }
 
+body{
+  @apply bg-sky;
+}
+
 .bg-image{
   @apply absolute top-0 left-0;
 }

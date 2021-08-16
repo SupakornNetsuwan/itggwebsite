@@ -3,12 +3,32 @@ import { HiUserGroup , HiTrendingUp} from "react-icons/hi"
 import { Tab } from "@headlessui/react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Typed from "typed.js";
 import './App.css';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 
   useEffect(()=>{
+
+    let start_tl = gsap.timeline({})
+
+    start_tl.from(".content",{
+      y:500,
+      ease:"power4.out",
+      duration:2.4
+    }).from(".logo",{
+      transform:"scale(0.6)",
+      rotateX:80,
+      force3D:false,
+      opacity:0,
+      ease:"power3.inOut",
+      duration:1.4
+    },"<0").from(".quote",{
+      opacity:0,
+      y:100
+    },"<0.5")
+
     gsap.to(".swipe",{
       y:-200,
       x:200,
@@ -40,17 +60,43 @@ function App() {
 
   },[])
 
+  useEffect(()=>{
+    const options = {
+    	strings: [
+        "",
+        "ITGG 🔥",
+        "ITGG 2021",
+      ],
+      typeSpeed: 50,
+      backSpeed: 30,
+      smartBackspace:true,
+    };
+    
+    // elRef refers to the <span> rendered below
+    let typed = new Typed(".topicname", options);
+    
+    return () => {
+      // Make sure to destroy Typed instance during cleanup
+      // to prevent memory leaks
+      typed.destroy();
+    }
+  },[])
+
   return (
     <>
-      <div className="bg-sky flex flex-col items-center pt-14">
-        <div className="relative bg-gray-50 rounded-xl p-2.5 border-2 border-gray-500 shadow-realistic overflow-hidden">
+      <div className="flex flex-col items-center pt-14">
+        <div className="relative bg-gray-50 rounded-xl p-2.5 border-2 border-gray-500 shadow-realistic overflow-hidden logo">
           <div className="w-6 absolute h-80 bg-white opacity-60 top-0 left-0 swipe transform -rotate-45"/>
           <img src="./images/logo.png" alt="logo" className="w-40"/>
         </div>
-        <h2 className="font-Rubik text-5xl pt-6 font-bold text-gray-800">ITGG 2021</h2>
-        <p className="font-Rubik text-gray-600">Infotech Tournament Gate Game</p>
+        <div className="quote text-center">
+          <h2 className="font-Rubik text-5xl pt-6 font-bold text-gray-800 topicname inline-block">ITGG 2021</h2>
+          <p className="font-Rubik text-gray-600">Infotech Tournament Gate Game</p>
+        </div>
       </div>
-      <div className="relative bg-sky">
+
+      <div className="content">
+      <div className="relative bg-sky mainbg">
         <img src="./images/bgtree1.png" alt="bg1" className="relative z-50 bg1 filter drop-shadow-bg"/>
         <img src="./images/bgtree2.png" alt="bg2" className="bg-image z-40 bg2 filter drop-shadow-bg"/>
         <img src="./images/bgtree3.png" alt="bg3" className="bg-image z-30 bg3 filter drop-shadow-bg"/>
@@ -134,6 +180,7 @@ function App() {
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
+      </div>
       </div>
     </>
   );
