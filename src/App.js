@@ -51,8 +51,7 @@ function App() {
         scrollTrigger:{
           trigger:".bg1",
           start:"50% 50%",
-          scrub:1,
-          markers:true
+          scrub:1
         },
         y:para.length,
         opacity: [1,2,3,4].includes(i) ? 0 : 100
