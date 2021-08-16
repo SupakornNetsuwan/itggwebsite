@@ -14,7 +14,7 @@ function App() {
     let start_tl = gsap.timeline({})
 
     start_tl.from(".content",{
-      y:500,
+      y:100,
       ease:"power4.out",
       duration:2.4
     }).from(".logo",{
@@ -23,7 +23,7 @@ function App() {
       force3D:false,
       opacity:0,
       ease:"power3.inOut",
-      duration:1.4
+      duration:1.6
     },"<0").from(".quote",{
       opacity:0,
       y:100
@@ -61,23 +61,19 @@ function App() {
   },[])
 
   useEffect(()=>{
-    const options = {
+
+    let typed = new Typed(".topicname", {
     	strings: [
         "",
-        "ITGG 🔥",
+        "ITGG IS ON FIRE",
         "ITGG 2021",
       ],
-      typeSpeed: 50,
-      backSpeed: 30,
+      typeSpeed: 60,
+      backSpeed: 50,
       smartBackspace:true,
-    };
-    
-    // elRef refers to the <span> rendered below
-    let typed = new Typed(".topicname", options);
+    });
     
     return () => {
-      // Make sure to destroy Typed instance during cleanup
-      // to prevent memory leaks
       typed.destroy();
     }
   },[])
