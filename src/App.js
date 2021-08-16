@@ -14,9 +14,9 @@ function App() {
     let start_tl = gsap.timeline({})
 
     start_tl.from(".content",{
-      y:100,
+      opacity:0.5,
       ease:"power4.out",
-      duration:2.4
+      duration:2
     }).from(".logo",{
       transform:"scale(0.6)",
       rotateX:80,
@@ -27,7 +27,7 @@ function App() {
     },"<0").from(".quote",{
       opacity:0,
       y:100
-    },"<0.5")
+    },"<1")
 
     gsap.to(".swipe",{
       y:-200,
@@ -51,21 +51,34 @@ function App() {
         scrollTrigger:{
           trigger:".bg1",
           start:"50% 50%",
-          scrub:1
+          scrub:1,
+          markers:true
         },
         y:para.length,
         opacity: [1,2,3,4].includes(i) ? 0 : 100
       })
     })
 
+    gsap.from(".tabs",{
+      scrollTrigger:{
+        trigger:".tabs",
+        start:"top 90%",
+        end:"bottom 10%",
+        toggleActions:"play pause pause pause",
+      },
+      xPercent:120,
+      opacity:0,
+      ease:"power4.inOut",
+      duration:1.5
+    })
+
   },[])
 
   useEffect(()=>{
-
     let typed = new Typed(".topicname", {
     	strings: [
         "",
-        "ITGG IS ON FIRE",
+        "ITGG KMITL",
         "ITGG 2021",
       ],
       typeSpeed: 60,
@@ -87,7 +100,7 @@ function App() {
         </div>
         <div className="quote text-center">
           <h2 className="font-Rubik text-5xl pt-6 font-bold text-gray-800 topicname inline-block">ITGG 2021</h2>
-          <p className="font-Rubik text-gray-600">Infotech Tournament Gate Game</p>
+          <p className="font-Rubik text-gray-600 z-50 relative">Infotech Tournament Gate Game</p>
         </div>
       </div>
 
@@ -99,8 +112,8 @@ function App() {
         <img src="./images/bgtree4.png" alt="bg4" className="bg-image z-40 bg4"/>
         <img src="./images/bgtree5.png" alt="bg5" className="bg-image z-0 bg5"/>
       </div>
-      <div className="relative flex justify-center items-start py-20 bg-main-blue w-full min-h-screen z-50">
-      <Tab.Group as="div" className="w-full md:w-auto mx-6 flex flex-col md:flex-row gap-2">
+      <div className="relative flex justify-center items-start py-20 bg-main-blue w-full min-h-screen z-50 overflow-hidden">
+      <Tab.Group as="div" className="w-full md:w-auto mx-6 flex flex-col md:flex-row gap-2 tabs">
         <Tab.List className="flex md:flex-col p-2 bg-white rounded-md gap-2">
           <Tab as="div" className="w-1/2">
             {({ selected })=>(
