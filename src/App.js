@@ -58,26 +58,32 @@ function App() {
         <img src="./images/bgtree5.png" alt="bg5" className="bg-image z-0 bg5"/>
       </div>
       <div className="relative flex justify-center items-start py-20 bg-main-blue w-full min-h-screen z-50">
-      <Tab.Group as="div" className="flex gap-2">
-        <Tab.List className="p-2 bg-white rounded-md space-y-2">
-          <Tab as="div">
+      <Tab.Group as="div" className="w-full md:w-auto mx-6 flex flex-col md:flex-row gap-2">
+        <Tab.List className="flex md:flex-col p-2 bg-white rounded-md gap-2">
+          <Tab as="div" className="w-1/2">
             {({ selected })=>(
-              <button className={`${selected ? "bg-buttonselect border-gray-500" : "bg-white"} p-5 rounded-md border-2 relative`}>
+              <button className={`${selected ? "bg-blue-50 border-gray-500" : "bg-white"}flex items-center w-full md:w-auto p-5 rounded-md border-2 relative outline-none`}>
                 {selected && <div className="w-3/4 h-1 bg-blue-400 absolute rounded-br-md rounded-bl-md top-0 left-1/2 transform -translate-x-1/2"/>}
-                <HiTrendingUp className="text-2xl"/>
+                <div className="flex justify-center gap-x-2">
+                  <HiTrendingUp className={`${selected && "text-blue-400"} text-2xl inline-block`}/>
+                  <span className={`${selected && "font-medium"} md:hidden text-gray-900`}>Team</span>
+                </div>
               </button>
             )}
           </Tab>
-          <Tab as="div">
+          <Tab as="div" className="w-1/2">
             {({ selected })=>(
-              <button className={`${selected ? "bg-buttonselect border-gray-500" : "bg-white"} p-5 rounded-md border-2 relative`}>
+              <button className={`${selected ? "bg-gray-50 border-gray-500" : "bg-white"}flex items-center w-full md:w-auto p-5 rounded-md border-2 relative outline-none`}>
                 {selected && <div className="w-3/4 h-1 bg-blue-400 absolute rounded-br-md rounded-bl-md top-0 left-1/2 transform -translate-x-1/2"/>}
-                <HiUserGroup className="text-2xl"/>
+                <div className="flex justify-center gap-x-2">
+                  <HiUserGroup className={`${selected && "text-blue-400"} text-2xl inline-block`}/>
+                  <span className={`${selected && "font-medium"} md:hidden text-gray-900`}>Person</span>
+                </div>
               </button>
             )}
           </Tab>
         </Tab.List>
-        <Tab.Panels className="bg-white min-w-1200 w-96 h-600 py-6 p-4 min-h-80 rounded-md">
+        <Tab.Panels className="bg-white w-full md:min-w-600 xl:min-w-1200 h-600 py-6 p-4 min-h-80 rounded-md">
           <Tab.Panel className="divide-y-2 text-gray-800">
             <div className="flex justify-between text-2xl px-6 pb-4">
               <p>🏆</p>
@@ -90,12 +96,12 @@ function App() {
                   const newScore = score.toString().split("").reverse().join("").match(/\d{1,3}/g).reverse().map(digits=> digits.split("").reverse().join("")).join(",")
 
                   return(
-                    <li key={name} className="flex justify-between items-center p-2 mx-4 mb-2 bg-cardsky text-2xl font-medium rounded-md">
+                    <li key={name} className="flex justify-between items-center p-2 md:mx-4 mb-2 bg-cardsky text-2xl font-medium rounded-md">
                       <div className="flex items-center gap-x-6">
                         <div className="w-14 py-4 bg-buttonselect text-center text-xl rounded-sm">{i + 1}</div>
                         <p style={{color}} className="w-24">{name}</p>
                       </div>
-                      <p className="w-24 text-right text-gray-500">{newScore}</p>
+                      <p className="w-24 text-right text-gray-500 font-light md:font-medium">{newScore}</p>
                     </li>
                   )
                 })}
@@ -109,17 +115,17 @@ function App() {
             </div>
             <div className="pt-5">
               <ul className="flex flex-col">
-                {[{name:"นายศุภกร เนตรสุวรรณ",score:2200}, {name:"นายมักกะโรนี ซอสเสส",score:2100}, {name:"นายบอนชอน ไก่ทรงเครื่อง",score:110}, {name:"นายมีทบอล ของอิเกีย",score:60}, {name:"นายมีทบอล ของอิเกีย",score:40}].map((house, i)=>{
+                {[{name:"นายศุภกร เนตรสุวรรณ",score:2200}, {name:"นายมักกะโรนี ซอสเสส",score:2100}, {name:"นายบอนชอน ไก่ทรงเครื่อง",score:110}, {name:"นายมีทบอล ของอิเกีย",score:60}, {name:"นายไอติม ไอจนเจ็บคอ",score:40}].map((house, i)=>{
                   const {name, score} = house
                   const newScore = score.toString().split("").reverse().join("").match(/\d{1,3}/g).reverse().map(digits=> digits.split("").reverse().join("")).join(",")
 
                   return(
-                    <li key={name} className="flex justify-between items-center p-2 mx-4 mb-2 bg-cardsky text-2xl font-medium rounded-md">
+                    <li key={name} className="flex justify-between items-center p-2 md:mx-4 mb-2 bg-cardsky text-2xl font-medium rounded-md">
                       <div className="flex items-center gap-x-6">
                         <div className="w-14 py-4 bg-buttonselect text-center text-xl rounded-sm">{i + 1}</div>
-                        <p className="font-Kanit font-normal">{name}</p>
+                        <p className="font-Kanit font-normal text-sm md:text-base">{name}</p>
                       </div>
-                      <p className="w-24 text-right text-gray-500">{newScore}</p>
+                      <p className="w-24 text-right text-gray-500 font-light md:font-medium">{newScore}</p>
                     </li>
                   )
                 })}
